@@ -1,0 +1,11 @@
+<suite name="EbayAppTest Suite">
+  <listeners>
+    <listener class-name="com.wipro.testUtils.PageElements"/>
+  </listeners>
+  <test name="Pretreatment Test Results">
+    <classes>
+      <class name="com.windpro.test.EbayTest"/>
+    </classes>
+
+  </test>
+</suite>
