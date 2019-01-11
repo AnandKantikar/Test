@@ -14,24 +14,25 @@ import java.io.IOException;
 public class DataFactory {
 
     public String workingDir = System.getProperty("user.dir");
-    public final  String excelFilePath = workingDir+ "\\Files\\TestData.xlsx";
-
-
-    public  String getExcelData(String sheetName, int rownum, int celnum)throws NumberFormatException {
+    public String excelFilePath = workingDir + "\\resources\\Ebay_TestData.xlsx";
+    private static DataFactory dataFactory;
+    public String getExcelData(String sheetName, int rownum, int celnum) throws NumberFormatException {
 
         String rtnVal = null;
         try {
-            XSSFWorkbook wb=new XSSFWorkbook(excelFilePath);
-            XSSFSheet sh=wb.getSheet(sheetName);
-            XSSFRow rc=sh.getRow(rownum);
-            XSSFCell cl=rc.getCell(celnum);
+            XSSFWorkbook wb = new XSSFWorkbook(excelFilePath);
+            XSSFSheet sh = wb.getSheet(sheetName);
+            XSSFRow rc = sh.getRow(rownum);
+            XSSFCell cl = rc.getCell(celnum);
             DataFormatter formatter = new DataFormatter();
             rtnVal = formatter.formatCellValue(cl);
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return rtnVal;
     }
+
+
 }

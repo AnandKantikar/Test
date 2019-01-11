@@ -16,6 +16,7 @@ import org.testng.xml.XmlSuite;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.android.AndroidDriver;
 
@@ -23,13 +24,13 @@ import io.appium.java_client.android.AndroidDriver;
 // // This class is created to  intatitate all class objects using singletone constructor
 public class PageElements implements IReporter {
     private static PageElements mInstance;
-    public AndroidDriver driver;
     private SignInScreen signInScreen;
     private SettingsScreen settingsScreen;
     private CommonFunctions commonFunctions;
     private DataFactory dataFactory;
     private HelperMethods helperMethods;
-    private  ProductDetailsPage productDetailsPage;
+    private ProductDetailsPage productDetailsPage;
+    public AndroidDriver driver;
     public static PageElements getInstance() {
         if (mInstance == null) {
             synchronized (PageElements.class) {
@@ -38,9 +39,7 @@ public class PageElements implements IReporter {
         }
         return mInstance;
     }
-    public static void removeInstance() {
-        mInstance = null;
-    }
+
     public void suiteSetUp() throws Throwable {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("deviceName", "Samsung Galaxy A7");
@@ -52,10 +51,13 @@ public class PageElements implements IReporter {
         caps.setCapability("sendKeyStrategy", "setValue");
         caps.setCapability("unicodeKeyboard", true);
         caps.setCapability("resetKeyboard", false);
-        //driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
         driver = new AndroidDriver(caps);
-     // Thread.sleep(30000);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     }
+    public static void removeInstance() {
+        mInstance = null;
+    }
+
 
     public ProductDetailsPage getProductDetailsPage() {
         if (productDetailsPage == null)
@@ -80,11 +82,13 @@ public class PageElements implements IReporter {
             dataFactory = new DataFactory();
         return dataFactory;
     }
+
     public SettingsScreen getSettingsScreen() {
         if (signInScreen == null)
             settingsScreen = new SettingsScreen(driver);
         return settingsScreen;
     }
+
     public CommonFunctions getCommonFunctions() {
         if (commonFunctions == null)
             commonFunctions = new CommonFunctions(driver);
@@ -92,12 +96,12 @@ public class PageElements implements IReporter {
     }
 
     public void resetApplication() {
-        settingsScreen=null;
-        signInScreen=null;
-        commonFunctions=null;
-        dataFactory=null;
-        productDetailsPage=null;
-        helperMethods=null;
+        settingsScreen = null;
+        signInScreen = null;
+        commonFunctions = null;
+        dataFactory = null;
+        productDetailsPage = null;
+        helperMethods = null;
         driver.quit();
     }
 
