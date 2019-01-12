@@ -51,7 +51,7 @@ public class CommonFunctions {
      */
     public boolean waitForVisibilityOfElement(AndroidElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(PageElements.getInstance().driver, 80);
+            WebDriverWait wait = new WebDriverWait(PageElements.getInstance().driver, 10);
             element = (AndroidElement) wait.until(ExpectedConditions.visibilityOf(element));
             return true;
         } catch (Exception e) {
