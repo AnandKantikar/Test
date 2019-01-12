@@ -52,7 +52,7 @@ public class PageElements implements IReporter {
         caps.setCapability("unicodeKeyboard", true);
         caps.setCapability("resetKeyboard", false);
         driver = new AndroidDriver(caps);
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
     public static void removeInstance() {
         mInstance = null;
