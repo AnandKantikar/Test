@@ -76,4 +76,6 @@ dependencies {
     implementation files('libs/xmlbeans.jar')
     compile 'de.mindpipe.android:android-logging-log4j:1.0.3'
     compile 'log4j:log4j:1.2.17'
+    implementation files('libs/extentreports-2.41.2.jar')
+    implementation files('libs/freemarker-2.3.23.jar')
 }
